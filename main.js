@@ -15,6 +15,12 @@ gsap.registerPlugin(ScrollTrigger);
 // Refresh ScrollTrigger after everything loads
 window.addEventListener('load', () => {
   ScrollTrigger.refresh();
+  // Hide page transition overlay
+  const overlay = document.querySelector('.page-transition-overlay');
+  if (overlay) {
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.display = 'none', 1000);
+  }
 });
 
 // ---- MOUSE TRACKING ----
@@ -24,21 +30,6 @@ document.addEventListener('mousemove', (e) => {
   mouse.tx = (e.clientX / window.innerWidth) * 2 - 1;
   mouse.ty = -(e.clientY / window.innerHeight) * 2 + 1;
 });
-
-// ========================================
-// PAGE TRANSITION ON LOAD
-// ========================================
-(function initPageTransition() {
-  const overlay = document.querySelector('.page-transition-overlay');
-  if (!overlay) return;
-  gsap.fromTo(overlay,
-    { opacity: 1 },
-    {
-      opacity: 0, duration: 1, ease: 'power2.inOut', delay: 0.2,
-      onComplete: () => overlay.style.display = 'none',
-    }
-  );
-})();
 
 // ========================================
 // TOP NAV
