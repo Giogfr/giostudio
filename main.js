@@ -34,6 +34,153 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // ========================================
+// MULTILINGUAL SYSTEM (EN / KA / RU)
+// ========================================
+const translations = {
+  en: {
+    hero_eyebrow: "Full-Stack Web Developer — Kutaisi, Georgia — Available Worldwide",
+    hero_subtitle: 'Building <strong>Scalable Web Applications</strong>, <strong>Custom SaaS Platforms</strong>, and <strong>High-Performance Software</strong> for clients worldwide.',
+    hero_stat1_num: "50+", hero_stat1_label: "Projects",
+    hero_stat2_num: "3yr", hero_stat2_label: "Experience",
+    hero_stat3_num: "48h", hero_stat3_label: "Fast Launch",
+    hero_stat4_num: "100%", hero_stat4_label: "Direct Access",
+    nav_services: "Services", nav_projects: "Projects", nav_experience: "Experience", nav_faq: "FAQ", nav_contact: "Contact",
+    services_eyebrow: "Core Services", services_title: "Engineering-Grade Development",
+    services_desc: 'From <strong>Scalable Web Applications</strong> to <strong>High-Performance Backend Systems</strong>, I bridge the gap between design and enterprise-ready code.',
+    s1_title: "Scalable Web Applications", s1_desc: 'Building <strong>React</strong> and <strong>Next.js</strong> applications optimized for <strong>Server-Side Rendering (SSR)</strong>, <strong>Technical SEO</strong>, and lightning-fast load times. I deliver <strong>Responsive Design</strong> that performs flawlessly across all devices.',
+    s2_title: "High-Performance Backend Systems", s2_desc: 'Architecting robust <strong>Node.js</strong> and <strong>Java</strong> backends. I specialize in <strong>API Integration</strong>, <strong>PostgreSQL</strong> database design, and handling complex logic with enterprise-grade security and efficiency.',
+    s3_title: "Custom SaaS & Dashboard Development", s3_desc: 'Full-stack platforms like <strong>GEO Cloud</strong> featuring <strong>user management</strong>, <strong>real-time monitoring</strong>, <strong>Stripe billing</strong>, and complex data visualization. From concept to production deployment.',
+    s4_title: "Technical SEO & UI Optimization", s4_desc: 'I bridge the gap between beautiful design and <strong>Google-ready code</strong>. Every project includes <strong>Core Web Vitals</strong> optimization, semantic HTML structure, and schema markup for maximum search visibility.',
+    s5_title: "Java & Plugin Development", s5_desc: 'Custom <strong>Java</strong> applications and <strong>Spigot</strong> plugins. From high-concurrency server systems to specialized backend tools, I build optimized solutions.',
+    s6_title: "Maintenance & Support", s6_desc: 'Ongoing support for plugins, servers, and web applications. <strong>Performance monitoring</strong>, security patches, and feature additions to keep your infrastructure running smoothly.',
+    transition_what: "What I Do", transition_work: "Selected Work", transition_journey: "My Journey", transition_questions: "Questions", transition_talk: "Let's Talk",
+    projects_eyebrow: "Portfolio", projects_title: "Projects", projects_desc: "Real projects, real results. Every one built from scratch with clean code and modern tech.",
+    experience_eyebrow: "Experience", experience_title: "My Journey", experience_desc: "From self-taught developer to building full-stack applications for clients worldwide.",
+    faq_eyebrow: "FAQ", faq_title: "Frequently Asked Questions",
+    contact_subtitle: "Ready to build something great?", contact_form_title: "Or fill out the form below",
+    footer_tagline: "Full-Stack Web Development — Kutaisi, Georgia", footer_copy: "© 2026 GioDev — All Rights Reserved"
+  },
+  ka: {
+    hero_eyebrow: "Full-Stack ვებ დეველოპერი — ქუთაისი, საქართველო — მთელს მსოფლიოში",
+    hero_subtitle: 'ქმნის <strong>მასშტაბირებად ვებ აპლიკაციებს</strong>, <strong>Custom SaaS პლატფორმებს</strong> და <strong>მაღალი წარმადობის პროგრამულ უზრუნველყოფას</strong> მსოფლიო მასშტაბით.',
+    hero_stat1_num: "50+", hero_stat1_label: "პროექტი",
+    hero_stat2_num: "3წლ", hero_stat2_label: "გამოცდილება",
+    hero_stat3_num: "48სთ", hero_stat3_label: "სწრაფი გაშვება",
+    hero_stat4_num: "100%", hero_stat4_label: "პირდაპირი კონტაქტი",
+    nav_services: "სერვისები", nav_projects: "პროექტები", nav_experience: "გამოცდილება", nav_faq: "FAQ", nav_contact: "კონტაქტი",
+    services_eyebrow: "ძირითადი სერვისები", services_title: "საინჟინრო დონის დეველოპმენტი",
+    services_desc: '<strong>მასშტაბირებადი ვებ აპლიკაციებიდან</strong> <strong>მაღალი წარმადობის Backend სისტემებამდე</strong> — ვქმნი დიზაინსა და enterprise დონის კოდს შორის ხიდს.',
+    s1_title: "მასშტაბირებადი ვებ აპლიკაციები", s1_desc: '<strong>React</strong> და <strong>Next.js</strong> აპლიკაციები ოპტიმიზირებული <strong>SSR</strong>-ით, <strong>ტექნიკური SEO</strong>-ით და ელვისებური ჩატვირთვით. <strong>რესპონსიული დიზაინი</strong> ყველა მოწყობილობისთვის.',
+    s2_title: "მაღალი წარმადობის Backend სისტემები", s2_desc: 'მყარი <strong>Node.js</strong> და <strong>Java</strong> backends. სპეციალიზაცია: <strong>API ინტეგრაცია</strong>, <strong>PostgreSQL</strong> მონაცემთა ბაზის დიზაინი და enterprise დონის უსაფრთხოება.',
+    s3_title: "Custom SaaS და Dashboard დეველოპმენტი", s3_desc: 'სრული სტექის პლატფორმები როგორიცაა <strong>GEO Cloud</strong> — <strong>მომხმარებლის მართვა</strong>, <strong>რეალური დროის მონიტორინგი</strong>, <strong>Stripe ბილინგი</strong> და მონაცემთა ვიზუალიზაცია.',
+    s4_title: "ტექნიკური SEO და UI ოპტიმიზაცია", s4_desc: 'ლამაზ დიზაინსა და <strong>Google-ready კოდს</strong> შორის ხიდი. ყველა პროექტი მოიცავს <strong>Core Web Vitals</strong> ოპტიმიზაციას, სემანტიკურ HTML-ს და schema markup-ს.',
+    s5_title: "Java და პლაგინ დეველოპმენტი", s5_desc: 'Custom <strong>Java</strong> აპლიკაციები და <strong>Spigot</strong> პლაგინები. მაღალი კონკურენტული სერვერული სისტემებიდან სპეციალიზებულ backend ინსტრუმენტებამდე.',
+    s6_title: "მხარდაჭერა და მომსახურება", s6_desc: 'უწყვეტი მხარდაჭერა პლაგინების, სერვერებისა და ვებ აპლიკაციებისთვის. <strong>წარმადობის მონიტორინგი</strong>, უსაფრთხოების განახლებები და ახალი ფუნქციები.',
+    transition_what: "რას ვაკეთებ", transition_work: "რჩეული ნამუშევრები", transition_journey: "ჩემი გზა", transition_questions: "კითხვები", transition_talk: "დაგვიკავშირდით",
+    projects_eyebrow: "პორტფოლიო", projects_title: "პროექტები", projects_desc: "რეალური პროექტები, რეალური შედეგები. ყველა აგებულია ნულიდან სუფთა კოდით და თანამედროვე ტექნოლოგიებით.",
+    experience_eyebrow: "გამოცდილება", experience_title: "ჩემი გზა", experience_desc: "თვითნასწავლი დეველოპერიდან full-stack აპლიკაციების შემქმნელამდე მსოფლიო მასშტაბის კლიენტებისთვის.",
+    faq_eyebrow: "FAQ", faq_title: "ხშირად დასმული კითხვები",
+    contact_subtitle: "მზად ხარ რაღაც დიდებულის შესაქმნელად?", contact_form_title: "ან შეავსეთ ფორმა ქვემოთ",
+    footer_tagline: "Full-Stack ვებ დეველოპმენტი — ქუთაისი, საქართველო", footer_copy: "© 2026 GioDev — ყველა უფლება დაცულია"
+  },
+  ru: {
+    hero_eyebrow: "Full-Stack Веб-разработчик — Кутаиси, Грузия — Доступен по всему миру",
+    hero_subtitle: 'Создаю <strong>масштабируемые веб-приложения</strong>, <strong>индивидуальные SaaS-платформы</strong> и <strong>высокопроизводительное ПО</strong> для клиентов по всему миру.',
+    hero_stat1_num: "50+", hero_stat1_label: "Проектов",
+    hero_stat2_num: "3г", hero_stat2_label: "Опыта",
+    hero_stat3_num: "48ч", hero_stat3_label: "Быстрый запуск",
+    hero_stat4_num: "100%", hero_stat4_label: "Прямой контакт",
+    nav_services: "Услуги", nav_projects: "Проекты", nav_experience: "Опыт", nav_faq: "FAQ", nav_contact: "Контакт",
+    services_eyebrow: "Основные услуги", services_title: "Разработка инженерного уровня",
+    services_desc: 'От <strong>масштабируемых веб-приложений</strong> до <strong>высокопроизводительных Backend-систем</strong> — я соединяю дизайн и enterprise-код.',
+    s1_title: "Масштабируемые веб-приложения", s1_desc: 'Приложения на <strong>React</strong> и <strong>Next.js</strong>, оптимизированные для <strong>SSR</strong>, <strong>технического SEO</strong> и молниеносной загрузки. <strong>Адаптивный дизайн</strong> для всех устройств.',
+    s2_title: "Высокопроизводительные Backend-системы", s2_desc: 'Надёжные бэкенды на <strong>Node.js</strong> и <strong>Java</strong>. Специализация: <strong>API-интеграция</strong>, проектирование <strong>PostgreSQL</strong> и enterprise-безопасность.',
+    s3_title: "Разработка SaaS и дашбордов", s3_desc: 'Full-stack платформы как <strong>GEO Cloud</strong> с <strong>управлением пользователями</strong>, <strong>мониторингом в реальном времени</strong>, <strong>Stripe-биллингом</strong> и визуализацией данных.',
+    s4_title: "Техническое SEO и UI-оптимизация", s4_desc: 'Мост между красивым дизайном и <strong>Google-ready кодом</strong>. Каждый проект включает оптимизацию <strong>Core Web Vitals</strong>, семантический HTML и schema markup.',
+    s5_title: "Java и разработка плагинов", s5_desc: 'Индивидуальные приложения на <strong>Java</strong> и плагины <strong>Spigot</strong>. От высоконагруженных серверных систем до специализированных backend-инструментов.',
+    s6_title: "Поддержка и обслуживание", s6_desc: 'Постоянная поддержка плагинов, серверов и веб-приложений. <strong>Мониторинг производительности</strong>, патчи безопасности и новые функции.',
+    transition_what: "Что я делаю", transition_work: "Избранные работы", transition_journey: "Мой путь", transition_questions: "Вопросы", transition_talk: "Свяжитесь со мной",
+    projects_eyebrow: "Портфолио", projects_title: "Проекты", projects_desc: "Реальные проекты, реальные результаты. Каждый создан с нуля на чистом коде и современных технологиях.",
+    experience_eyebrow: "Опыт", experience_title: "Мой путь", experience_desc: "От самоучки до разработчика full-stack приложений для клиентов по всему миру.",
+    faq_eyebrow: "FAQ", faq_title: "Часто задаваемые вопросы",
+    contact_subtitle: "Готовы создать что-то великое?", contact_form_title: "Или заполните форму ниже",
+    footer_tagline: "Full-Stack Веб-разработка — Кутаиси, Грузия", footer_copy: "© 2026 GioDev — Все права защищены"
+  }
+};
+
+let currentLang = 'en';
+
+function setLanguage(lang) {
+  if (!translations[lang]) return;
+  currentLang = lang;
+  const t = translations[lang];
+
+  // Update all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  // Update specific elements by ID/class
+  const heroEyebrow = document.querySelector('.hero-eyebrow');
+  if (heroEyebrow) heroEyebrow.textContent = t.hero_eyebrow;
+
+  const heroSubtitle = document.querySelector('.hero-subtitle');
+  if (heroSubtitle) heroSubtitle.innerHTML = t.hero_subtitle;
+
+  // Update stat labels
+  const statLabels = document.querySelectorAll('.hero-stat-label');
+  if (statLabels[0]) statLabels[0].textContent = t.hero_stat1_label;
+  if (statLabels[1]) statLabels[1].textContent = t.hero_stat2_label;
+  if (statLabels[2]) statLabels[2].textContent = t.hero_stat3_label;
+  if (statLabels[3]) statLabels[3].textContent = t.hero_stat4_label;
+
+  // Update section headers
+  const sectionEyebrows = document.querySelectorAll('.section-eyebrow');
+  const sectionTitles = document.querySelectorAll('.section-title');
+  const sectionDescs = document.querySelectorAll('.section-desc');
+
+  // Services section
+  if (sectionEyebrows[0]) sectionEyebrows[0].textContent = t.services_eyebrow;
+  if (sectionTitles[0]) sectionTitles[0].textContent = t.services_title;
+  if (sectionDescs[0]) sectionDescs[0].innerHTML = t.services_desc;
+
+  // Footer
+  const footerTagline = document.querySelector('.footer-tagline');
+  if (footerTagline) footerTagline.textContent = t.footer_tagline;
+  const footerCopy = document.querySelector('.footer-copy');
+  if (footerCopy) footerCopy.textContent = t.footer_copy;
+
+  // Update lang links active state
+  document.querySelectorAll('.lang-link').forEach((link) => {
+    link.classList.toggle('active', link.getAttribute('data-lang') === lang);
+    link.removeAttribute('aria-current');
+    if (link.getAttribute('data-lang') === lang) link.setAttribute('aria-current', 'true');
+  });
+
+  // Update HTML lang attribute
+  document.documentElement.lang = lang === 'en' ? 'en' : lang === 'ka' ? 'ka' : 'ru';
+
+  // Save preference
+  localStorage.setItem('giodev-lang', lang);
+}
+
+// Language switcher
+document.querySelectorAll('.lang-link').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const lang = link.getAttribute('data-lang');
+    setLanguage(lang);
+  });
+});
+
+// Load saved language preference
+const savedLang = localStorage.getItem('giodev-lang');
+if (savedLang && translations[savedLang]) {
+  setLanguage(savedLang);
+}
+
+// ========================================
 // TOP NAV
 // ========================================
 (function initNav() {

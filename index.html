@@ -41,10 +41,18 @@
       "addressLocality": "Kutaisi",
       "addressCountry": "GE"
     },
-    "priceRange": "$$",
-    "url": "https://giodev.site"
+    "priceRange": "₾₾",
+    "url": "https://giodev.site",
+    "areaServed": ["GE", "US", "EU", "Worldwide"],
+    "availableLanguage": ["English", "Georgian", "Russian"]
   }
   </script>
+
+  <!-- Hreflang Tags for SEO -->
+  <link rel="alternate" hreflang="en" href="https://giodev.site/" />
+  <link rel="alternate" hreflang="ka" href="https://giodev.site/?lang=ka" />
+  <link rel="alternate" hreflang="ru" href="https://giodev.site/?lang=ru" />
+  <link rel="alternate" hreflang="x-default" href="https://giodev.site/" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.imgur.com/PDJfk20.png">
@@ -78,16 +86,16 @@
   <nav class="top-nav" role="navigation" aria-label="Main navigation">
     <a href="#hero" class="nav-logo" aria-label="GioDev Home">GIODEV</a>
     <div class="nav-links">
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#experience" class="nav-link">Experience</a>
-      <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#contact" class="nav-link nav-cta">Contact</a>
+      <a href="#services" class="nav-link" data-i18n="nav_services">Services</a>
+      <a href="#projects" class="nav-link" data-i18n="nav_projects">Projects</a>
+      <a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a>
+      <a href="#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="#contact" class="nav-link nav-cta" data-i18n="nav_contact">Contact</a>
     </div>
     <div class="nav-lang" aria-label="Language selector">
-      <a href="#" class="lang-link active" aria-current="true">en</a>
-      <a href="#" class="lang-link">ka</a>
-      <a href="#" class="lang-link">ru</a>
+      <a href="#" class="lang-link active" data-lang="en" aria-current="true">en</a>
+      <a href="#" class="lang-link" data-lang="ka">ka</a>
+      <a href="#" class="lang-link" data-lang="ru">ru</a>
     </div>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
