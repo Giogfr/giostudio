@@ -570,6 +570,79 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ========================================
+   JAVA ADVANTAGE
+   ======================================== */
+
+.java-advantage {
+  background: var(--color-bg);
+  position: relative;
+  padding: clamp(4rem, 8vh, 8rem) 0;
+}
+
+.java-advantage-inner {
+  position: relative; z-index: 1; max-width: var(--max-width); padding: 0 clamp(1rem, 4vw, 6rem);
+}
+
+.java-advantage-content {
+  max-width: 750px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.java-advantage-content p {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.java-advantage-content strong {
+  color: var(--color-text);
+}
+
+.java-advantage-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.advantage-stat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.advantage-stat:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.advantage-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.advantage-stat h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.advantage-stat p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ========================================
    FAQ
    ======================================== */
 
@@ -736,6 +809,25 @@ button { font-family: inherit; cursor: pointer; }
   .timeline { padding-left: 25px; }
   .timeline::before { left: 8px; }
   .timeline-dot { left: -25px; width: 8px; height: 8px; }
+  .java-advantage-stats { grid-template-columns: 1fr; }
+  
+  /* Mobile Contact Fix */
+  .contact-form-wrap {
+    padding: 1.2rem;
+    margin: 0 0.5rem;
+  }
+  .contact-form {
+    gap: 0.8rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.9rem;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  .contact-inner {
+    padding: clamp(2rem, 5vh, 4rem) 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
