@@ -52,7 +52,6 @@ button { font-family: inherit; cursor: pointer; }
   background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E") repeat;
   pointer-events: none; z-index: 9998; opacity: 0.5;
   animation: grainShift 0.5s steps(1) infinite;
-  will-change: transform;
 }
 
 @keyframes grainShift {
@@ -91,7 +90,6 @@ button { font-family: inherit; cursor: pointer; }
   background: rgba(5, 5, 5, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
   transition: transform 0.4s var(--ease-out-expo), background 0.3s ease;
-  will-change: transform;
 }
 
 .top-nav.nav-hidden { transform: translateY(-100%); }
@@ -347,9 +345,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .service-card {
-  background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 1.5rem;
@@ -360,20 +356,8 @@ button { font-family: inherit; cursor: pointer; }
   flex-direction: column;
   gap: 0.6rem;
   transform: translateY(0);
-  will-change: transform;
 }
 
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--color-accent-dim), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.service-card:hover::before { opacity: 1; }
 .service-card:hover {
   border-color: var(--color-border-hover);
   transform: translateY(-6px);
@@ -423,14 +407,11 @@ button { font-family: inherit; cursor: pointer; }
 .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
 
 .project-card {
-  background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 16px;
   overflow: hidden;
   transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
 }
 .project-card:hover {
   border-color: var(--color-border-hover);
@@ -496,14 +477,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .timeline-content {
-  background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: clamp(1.2rem, 2.5vw, 1.8rem);
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
 }
 .timeline-content:hover {
   border-color: var(--color-border-hover);
@@ -521,13 +499,10 @@ button { font-family: inherit; cursor: pointer; }
 
 .tech-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
 .tech-tag {
-  padding: 0.4rem 1rem; background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding: 0.4rem 1rem; background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 30px; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-muted);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
 }
 .tech-tag:hover {
   border-color: var(--color-accent); color: var(--color-accent);
@@ -584,9 +559,7 @@ button { font-family: inherit; cursor: pointer; }
 .contact-form-wrap {
   width: 100%; max-width: 550px; text-align: left;
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  background: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 20px;
 }

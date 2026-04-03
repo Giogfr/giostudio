@@ -10,15 +10,17 @@ const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/
 
 // ---- LENIS SMOOTH SCROLL ----
 const lenis = new Lenis({
-  duration: 1.2,
+  duration: 0.8,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   orientation: 'vertical',
   gestureOrientation: 'vertical',
   smoothWheel: true,
-  wheelMultiplier: 1,
-  touchMultiplier: 2,
+  wheelMultiplier: 0.9,
+  touchMultiplier: 1.5,
   normalizeWheel: true,
   infinite: false,
+  syncTouch: true,
+  syncTouchLerp: 0.075,
 });
 
 lenis.on('scroll', (e) => { scrollVelocity = e.velocity; });
@@ -116,7 +118,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(1);
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x050505);
@@ -211,7 +213,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
   scene.add(plane);
 
-  const particleCount = 600;
+  const particleCount = 300;
   const pGeo = new THREE.BufferGeometry();
   const pPos = new Float32Array(particleCount * 3);
   const pSizes = new Float32Array(particleCount);
@@ -344,13 +346,13 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(1);
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 10;
 
-  const count = 800;
+  const count = 400;
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(count * 3);
   for (let i = 0; i < count; i++) {
@@ -415,13 +417,13 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(1);
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 10;
 
-  const count = 2000;
+  const count = 1000;
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(count * 3);
   const sizes = new Float32Array(count);
