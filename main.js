@@ -86,13 +86,13 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // HERO SCENE — Epic Animated Shader Background
 // ========================================
 (function initHeroScene() {
-  if (isMobile) return;
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(1);
+  // Lower DPR on mobile for performance
+  renderer.setPixelRatio(isMobile ? 1 : 1);
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x050505);
@@ -187,7 +187,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
   scene.add(plane);
 
-  const particleCount = 300;
+  const particleCount = isMobile ? 150 : 300;
   const pGeo = new THREE.BufferGeometry();
   const pPos = new Float32Array(particleCount * 3);
   const pSizes = new Float32Array(particleCount);
