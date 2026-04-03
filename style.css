@@ -624,9 +624,16 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .advantage-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.advantage-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: var(--color-accent);
 }
 
 .advantage-stat h4 {
