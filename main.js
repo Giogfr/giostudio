@@ -5,7 +5,9 @@
 
 const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
 let scrollVelocity = 0;
-const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+// Robust touch detection for iOS/Android tablets and phones
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth < 1024;
+const isMobile = isTouchDevice;
 
 // ---- SMOOTH SCROLL (Native) ----
 document.documentElement.style.scrollBehavior = 'smooth';
