@@ -314,7 +314,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // SERVICES — Background Particles
 // ========================================
 (function initServicesScene() {
-  if (isMobile) return;
   const canvas = document.getElementById('services-canvas');
   if (!canvas) return;
 
@@ -385,7 +384,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // CONTACT SCENE — Nebula Star Field
 // ========================================
 (function initContactScene() {
-  if (isMobile) return;
   const canvas = document.getElementById('contact-canvas');
   if (!canvas) return;
 
@@ -549,7 +547,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // MAGNETIC BUTTONS
 // ========================================
 (function initMagneticButtons() {
-  if (isMobile) return;
   document.querySelectorAll('.magnetic').forEach((btn) => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
@@ -627,7 +624,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // CARD HOVER GLOW FOLLOW
 // ========================================
 (function initCardGlow() {
-  if (isMobile) return;
   document.querySelectorAll('.service-card, .project-card, .timeline-content').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
