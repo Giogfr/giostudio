@@ -128,7 +128,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ========================================
-   iOS & Tablet Optimizations
+   iOS & Tablet Optimizations (Beautiful but Lightweight)
    ======================================== */
 
 /* Fix iOS 100vh address bar bug */
@@ -136,32 +136,44 @@ button { font-family: inherit; cursor: pointer; }
   .hero { min-height: -webkit-fill-available; }
 }
 
-/* Disable heavy effects on touch devices */
+/* Optimize for touch devices without losing beauty */
 @media (hover: none) and (pointer: coarse) {
+  /* Replace heavy blur with elegant semi-transparent layers */
   .glass {
-    background: var(--color-surface) !important;
+    background: rgba(17, 17, 17, 0.85) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
   }
   .top-nav {
     background: rgba(5, 5, 5, 0.95) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  /* Disable hover transforms on touch */
-  .service-card:hover,
-  .project-card:hover,
-  .timeline-content:hover,
-  .advantage-stat:hover,
-  .testimonial-card:hover,
-  .blog-card:hover,
-  .pricing-card:hover,
-  .tech-tag:hover {
-    transform: none !important;
-    box-shadow: none !important;
+  
+  /* Use hardware-accelerated transforms instead of shadows */
+  .service-card, .project-card, .timeline-content, .advantage-stat {
+    transition: transform 0.3s ease !important;
   }
+  .service-card:active, .project-card:active, .timeline-content:active {
+    transform: scale(0.98) !important;
+  }
+
   /* Hide grain on mobile for performance */
   .grain-overlay { display: none; }
+  
+  /* Disable heavy canvases but keep beautiful CSS gradients */
+  #hero-canvas, #services-canvas, #contact-canvas { display: none; }
+}
+
+/* Beautiful CSS fallback for hero background on tablets */
+@media (hover: none) and (pointer: coarse) {
+  .hero {
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(224, 224, 224, 0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+  }
+  .hero::before { display: none; }
 }
 
 .glass {
