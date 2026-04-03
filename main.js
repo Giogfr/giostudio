@@ -5,35 +5,14 @@
 
 const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
 let scrollVelocity = 0;
-let lastNavScrollTop = 0;
 const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-// ---- LENIS SMOOTH SCROLL ----
-const lenis = new Lenis({
-  duration: 0.8,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  orientation: 'vertical',
-  gestureOrientation: 'vertical',
-  smoothWheel: true,
-  wheelMultiplier: 0.9,
-  touchMultiplier: 1.5,
-  normalizeWheel: true,
-  infinite: false,
-  syncTouch: true,
-  syncTouchLerp: 0.075,
-});
-
-lenis.on('scroll', (e) => { scrollVelocity = e.velocity; });
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
+// ---- SMOOTH SCROLL (Native) ----
+document.documentElement.style.scrollBehavior = 'smooth';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Refresh ScrollTrigger after everything loads to fix position calculations
+// Refresh ScrollTrigger after everything loads
 window.addEventListener('load', () => {
   ScrollTrigger.refresh();
 });
@@ -68,7 +47,9 @@ document.addEventListener('mousemove', (e) => {
   const nav = document.querySelector('.top-nav');
   if (!nav) return;
 
-  lenis.on('scroll', ({ scroll }) => {
+  let lastNavScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    const scroll = window.pageYOffset;
     if (scroll > lastNavScrollTop && scroll > 100) {
       nav.classList.add('nav-hidden');
       nav.classList.remove('nav-solid');
@@ -77,7 +58,7 @@ document.addEventListener('mousemove', (e) => {
       nav.classList.toggle('nav-solid', scroll > 50);
     }
     lastNavScrollTop = scroll;
-  });
+  }, { passive: true });
 
   const toggle = document.querySelector('.nav-toggle');
   const mobileNav = document.querySelector('.mobile-nav');
@@ -103,7 +84,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const target = document.querySelector(link.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      lenis.scrollTo(target, { offset: -72, duration: 1.5 });
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 });
