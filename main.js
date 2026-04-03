@@ -15,12 +15,14 @@ gsap.registerPlugin(ScrollTrigger);
 // Refresh ScrollTrigger after everything loads
 window.addEventListener('load', () => {
   ScrollTrigger.refresh();
-  // Hide page transition overlay
-  const overlay = document.querySelector('.page-transition-overlay');
-  if (overlay) {
-    overlay.style.opacity = '0';
-    setTimeout(() => overlay.style.display = 'none', 1000);
-  }
+  // Hide loader after 1.5s
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.style.display = 'none', 500);
+    }
+  }, 1500);
 });
 
 // ---- MOUSE TRACKING ----
