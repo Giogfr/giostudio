@@ -38,72 +38,168 @@ document.addEventListener('mousemove', (e) => {
 // ========================================
 const translations = {
   en: {
+    nav_home: "Home", nav_services: "Services", nav_projects: "Projects", nav_experience: "Experience", nav_faq: "FAQ", nav_contact: "Contact",
     hero_eyebrow: "Full-Stack Web Developer — Kutaisi, Georgia — Available Worldwide",
     hero_subtitle: 'Building <strong>Scalable Web Applications</strong>, <strong>Custom SaaS Platforms</strong>, and <strong>High-Performance Software</strong> for clients worldwide.',
-    hero_stat1_num: "50+", hero_stat1_label: "Projects",
-    hero_stat2_num: "3yr", hero_stat2_label: "Experience",
-    hero_stat3_num: "48h", hero_stat3_label: "Fast Launch",
-    hero_stat4_num: "100%", hero_stat4_label: "Direct Access",
-    nav_services: "Services", nav_projects: "Projects", nav_experience: "Experience", nav_faq: "FAQ", nav_contact: "Contact",
+    hero_btn_projects: "View Projects", hero_btn_contact: "Get in Touch",
+    stat_projects: "Projects", stat_experience: "Experience", stat_fast: "Fast Launch", stat_direct: "Direct Access",
+    scroll: "Scroll",
+    mq_custom: "Custom Software", mq_api: "API Design", mq_georgia: "Georgia",
+    trans_what: "What I Do", trans_java: "The Engineering Edge", trans_work: "Selected Work", trans_journey: "My Journey", trans_questions: "Questions", trans_talk: "Let's Talk",
     services_eyebrow: "Core Services", services_title: "Engineering-Grade Development",
     services_desc: 'From <strong>Scalable Web Applications</strong> to <strong>High-Performance Backend Systems</strong>, I bridge the gap between design and enterprise-ready code.',
-    s1_title: "Scalable Web Applications", s1_desc: 'Building <strong>React</strong> and <strong>Next.js</strong> applications optimized for <strong>Server-Side Rendering (SSR)</strong>, <strong>Technical SEO</strong>, and lightning-fast load times. I deliver <strong>Responsive Design</strong> that performs flawlessly across all devices.',
-    s2_title: "High-Performance Backend Systems", s2_desc: 'Architecting robust <strong>Node.js</strong> and <strong>Java</strong> backends. I specialize in <strong>API Integration</strong>, <strong>PostgreSQL</strong> database design, and handling complex logic with enterprise-grade security and efficiency.',
-    s3_title: "Custom SaaS & Dashboard Development", s3_desc: 'Full-stack platforms like <strong>GEO Cloud</strong> featuring <strong>user management</strong>, <strong>real-time monitoring</strong>, <strong>Stripe billing</strong>, and complex data visualization. From concept to production deployment.',
-    s4_title: "Technical SEO & UI Optimization", s4_desc: 'I bridge the gap between beautiful design and <strong>Google-ready code</strong>. Every project includes <strong>Core Web Vitals</strong> optimization, semantic HTML structure, and schema markup for maximum search visibility.',
-    s5_title: "Java & Plugin Development", s5_desc: 'Custom <strong>Java</strong> applications and <strong>Spigot</strong> plugins. From high-concurrency server systems to specialized backend tools, I build optimized solutions.',
-    s6_title: "Maintenance & Support", s6_desc: 'Ongoing support for plugins, servers, and web applications. <strong>Performance monitoring</strong>, security patches, and feature additions to keep your infrastructure running smoothly.',
-    transition_what: "What I Do", transition_work: "Selected Work", transition_journey: "My Journey", transition_questions: "Questions", transition_talk: "Let's Talk",
+    s1_title: "Scalable Web Applications", s1_desc: 'Building <strong>React</strong> and <strong>Next.js</strong> applications optimized for <strong>Server-Side Rendering (SSR)</strong>, <strong>Technical SEO</strong>, and lightning-fast load times.',
+    s2_title: "High-Performance Backend Systems", s2_desc: 'Architecting robust <strong>Node.js</strong> and <strong>Java</strong> backends. Specializing in <strong>API Integration</strong>, <strong>PostgreSQL</strong> design, and enterprise-grade security.',
+    s3_title: "Custom SaaS & Dashboard Development", s3_desc: 'Full-stack platforms like <strong>GEO Cloud</strong> featuring <strong>user management</strong>, <strong>real-time monitoring</strong>, <strong>Stripe billing</strong>, and data visualization.',
+    s4_title: "Technical SEO & UI Optimization", s4_desc: 'Bridging the gap between beautiful design and <strong>Google-ready code</strong>. Every project includes <strong>Core Web Vitals</strong> optimization and schema markup.',
+    s5_title: "Java & Plugin Development", s5_desc: 'Custom <strong>Java</strong> applications and <strong>Spigot</strong> plugins. From high-concurrency server systems to specialized backend tools.',
+    s6_title: "Maintenance & Support", s6_desc: 'Ongoing support for web applications and servers. <strong>Performance monitoring</strong>, security patches, and feature additions.',
+    cta_start: "Start a project →", cta_discuss: "Discuss your backend →", cta_see: "See case studies →", cta_audit: "Audit your site →", cta_view: "View on BuiltByBit →", cta_support: "Get support →",
+    java_eyebrow: "Engineering Mindset", java_title: "From Plugin Architecture to Web Infrastructure",
+    java_p1: 'Managing <strong>high-concurrency environments</strong> taught me something most web developers never learn: <strong>every millisecond of latency matters</strong>.',
+    java_p2: 'When you\'re handling hundreds of users simultaneously, you develop an instinct for <strong>memory management</strong>, <strong>asynchronous processing</strong>, and <strong>code efficiency</strong>.',
+    java_p3: 'This is why my <strong>React</strong> and <strong>Next.js</strong> projects load faster, my <strong>Node.js</strong> APIs handle more requests, and my <strong>PostgreSQL</strong> queries are optimized from day one.',
+    adv_latency: "Low Latency", adv_latency_desc: "Optimized for sub-100ms response times",
+    adv_memory: "Memory Efficient", adv_memory_desc: "Zero memory leaks, clean garbage collection",
+    adv_concurrency: "High Concurrency", adv_concurrency_desc: "Built to handle thousands of simultaneous users",
     projects_eyebrow: "Portfolio", projects_title: "Projects", projects_desc: "Real projects, real results. Every one built from scratch with clean code and modern tech.",
-    experience_eyebrow: "Experience", experience_title: "My Journey", experience_desc: "From self-taught developer to building full-stack applications for clients worldwide.",
-    faq_eyebrow: "FAQ", faq_title: "Frequently Asked Questions",
-    contact_subtitle: "Ready to build something great?", contact_form_title: "Or fill out the form below",
+    tag_saas: "Custom SaaS Platform", tag_webapp: "Web Application",
+    proj_geo_desc: 'Enterprise-grade <strong>cloud hosting platform</strong> built with <strong>Next.js</strong> and <strong>Node.js</strong>. Features <strong>user management</strong>, <strong>Stripe billing</strong>, and real-time <strong>server monitoring dashboard</strong>.',
+    proj_iq_desc: 'Interactive <strong>cognitive assessment platform</strong> built with <strong>React</strong> and <strong>TypeScript</strong>. Features <strong>real-time scoring algorithms</strong> and detailed <strong>analytics dashboard</strong>.',
+    cta_start_project: "Start Your Project", cta_instagram: "Chat on Instagram",
+    exp_eyebrow: "Experience", exp_title: "My Journey", exp_desc: "From self-taught developer to building full-stack applications for clients worldwide.",
+    tl1_date: "2023 — The Beginning", tl1_title: "Started Web Development", tl1_desc: "Began learning HTML, CSS, and JavaScript. Built my first websites and quickly moved into complex frontend interfaces.",
+    tl2_date: "2024 — Leveling Up", tl2_title: "Full-Stack & Backend Engineering", tl2_desc: 'Expanded into <strong>React</strong>, <strong>Next.js</strong>, and <strong>TypeScript</strong>. Started building full-stack applications with <strong>Node.js</strong> and <strong>PostgreSQL</strong>.',
+    tl3_date: "2024 — First Clients", tl3_title: "Started Taking Client Projects", tl3_desc: "Began working with businesses. Delivered custom websites, web applications, and high-performance backend systems.",
+    tl4_date: "2025 — Building Products", tl4_title: "Launched GEO Cloud & GioStudio IQ", tl4_desc: 'Built and launched my own SaaS products — <strong>GEO Cloud</strong> (hosting platform) and <strong>GioStudio IQ</strong> (assessment tool).',
+    tl5_date: "2026 — Present", tl5_title: "GioDev — Full-Stack Web Developer", tl5_desc: 'Now offering end-to-end web development — from <strong>React</strong> frontends to <strong>Node.js</strong> backends, custom SaaS platforms, and enterprise-grade software.',
+    tag_freelance: "Freelance", tag_webapps: "Web Apps", tag_backend: "Backend", tag_fullstack: "Full-Stack", tech_title: "Tech Stack",
+    faq_title: "Frequently Asked Questions",
+    faq1_q: "How much does a website or web application cost?", faq1_a: "It depends on the scope. A simple landing page starts at 119 GEL. Multi-page business sites start at 349 GEL. Custom SaaS platforms are quoted based on requirements. I always give a clear quote before starting — no hidden fees.",
+    faq2_q: "How fast can you deliver a project?", faq2_a: "Simple websites can be delivered in 48 hours. Multi-page sites typically take 1-2 weeks. Custom web applications and SaaS platforms take 2-6 weeks depending on complexity.",
+    faq3_q: "What technologies do you use for web development?", faq3_a: 'My core stack: <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Node.js</strong>, and <strong>PostgreSQL</strong>. I also use <strong>Prisma</strong>, <strong>Stripe</strong>, and <strong>Vercel</strong>.',
+    faq4_q: "Do you work with clients outside Georgia?", faq4_a: "Yes! I work with clients worldwide. All communication happens through Instagram, email, or video calls. Time zones are never an issue.",
+    faq5_q: "Do I get direct access to you during the project?", faq5_a: "Absolutely. You work directly with me — no middlemen, no project managers. I handle everything from design to deployment.",
+    faq6_q: "What about ongoing support after launch?", faq6_a: "Every project includes post-launch support. I also offer retainer agreements for ongoing maintenance, performance monitoring, and new feature development.",
+    faq7_q: "Will my website be mobile-friendly and SEO-optimized?", faq7_a: "Yes. Every project is built with <strong>responsive design</strong> from the ground up and includes <strong>technical SEO</strong> optimization — semantic HTML, schema markup, and Core Web Vitals compliance.",
+    contact_subtitle: "Ready to build something great?", contact_btn_ig: "Message on Instagram", contact_btn_bbb: "BuiltByBit Store",
+    contact_form_title: "Or fill out the form below",
+    form_name: "Name", form_name_ph: "Your name", form_email: "Email", form_email_ph: "your@email.com",
+    form_service: "Service", form_select: "Select a service",
+    form_opt_website: "Website", form_opt_webapp: "Web Application", form_opt_saas: "SaaS Platform",
+    form_opt_backend: "Backend / API", form_opt_java: "Java Development", form_opt_other: "Other",
+    form_message: "Message", form_message_ph: "Tell me about your project...", form_submit: "Send Message",
+    label_email: "Email", label_ig: "Instagram", label_location: "Location",
     footer_tagline: "Full-Stack Web Development — Kutaisi, Georgia", footer_copy: "© 2026 GioDev — All Rights Reserved"
   },
   ka: {
+    nav_home: "მთავარი", nav_services: "სერვისები", nav_projects: "პროექტები", nav_experience: "გამოცდილება", nav_faq: "FAQ", nav_contact: "კონტაქტი",
     hero_eyebrow: "Full-Stack ვებ დეველოპერი — ქუთაისი, საქართველო — მთელს მსოფლიოში",
     hero_subtitle: 'ქმნის <strong>მასშტაბირებად ვებ აპლიკაციებს</strong>, <strong>Custom SaaS პლატფორმებს</strong> და <strong>მაღალი წარმადობის პროგრამულ უზრუნველყოფას</strong> მსოფლიო მასშტაბით.',
-    hero_stat1_num: "50+", hero_stat1_label: "პროექტი",
-    hero_stat2_num: "3წლ", hero_stat2_label: "გამოცდილება",
-    hero_stat3_num: "48სთ", hero_stat3_label: "სწრაფი გაშვება",
-    hero_stat4_num: "100%", hero_stat4_label: "პირდაპირი კონტაქტი",
-    nav_services: "სერვისები", nav_projects: "პროექტები", nav_experience: "გამოცდილება", nav_faq: "FAQ", nav_contact: "კონტაქტი",
+    hero_btn_projects: "პროექტები", hero_btn_contact: "დაგვიკავშირდით",
+    stat_projects: "პროექტი", stat_experience: "გამოცდილება", stat_fast: "სწრაფი გაშვება", stat_direct: "პირდაპირი კონტაქტი",
+    scroll: "სქროლი",
+    mq_custom: "Custom Software", mq_api: "API დიზაინი", mq_georgia: "საქართველო",
+    trans_what: "რას ვაკეთებ", trans_java: "საინჟინრო უპირატესობა", trans_work: "რჩეული ნამუშევრები", trans_journey: "ჩემი გზა", trans_questions: "კითხვები", trans_talk: "დაგვიკავშირდით",
     services_eyebrow: "ძირითადი სერვისები", services_title: "საინჟინრო დონის დეველოპმენტი",
     services_desc: '<strong>მასშტაბირებადი ვებ აპლიკაციებიდან</strong> <strong>მაღალი წარმადობის Backend სისტემებამდე</strong> — ვქმნი დიზაინსა და enterprise დონის კოდს შორის ხიდს.',
-    s1_title: "მასშტაბირებადი ვებ აპლიკაციები", s1_desc: '<strong>React</strong> და <strong>Next.js</strong> აპლიკაციები ოპტიმიზირებული <strong>SSR</strong>-ით, <strong>ტექნიკური SEO</strong>-ით და ელვისებური ჩატვირთვით. <strong>რესპონსიული დიზაინი</strong> ყველა მოწყობილობისთვის.',
-    s2_title: "მაღალი წარმადობის Backend სისტემები", s2_desc: 'მყარი <strong>Node.js</strong> და <strong>Java</strong> backends. სპეციალიზაცია: <strong>API ინტეგრაცია</strong>, <strong>PostgreSQL</strong> მონაცემთა ბაზის დიზაინი და enterprise დონის უსაფრთხოება.',
-    s3_title: "Custom SaaS და Dashboard დეველოპმენტი", s3_desc: 'სრული სტექის პლატფორმები როგორიცაა <strong>GEO Cloud</strong> — <strong>მომხმარებლის მართვა</strong>, <strong>რეალური დროის მონიტორინგი</strong>, <strong>Stripe ბილინგი</strong> და მონაცემთა ვიზუალიზაცია.',
-    s4_title: "ტექნიკური SEO და UI ოპტიმიზაცია", s4_desc: 'ლამაზ დიზაინსა და <strong>Google-ready კოდს</strong> შორის ხიდი. ყველა პროექტი მოიცავს <strong>Core Web Vitals</strong> ოპტიმიზაციას, სემანტიკურ HTML-ს და schema markup-ს.',
+    s1_title: "მასშტაბირებადი ვებ აპლიკაციები", s1_desc: '<strong>React</strong> და <strong>Next.js</strong> აპლიკაციები ოპტიმიზირებული <strong>SSR</strong>-ით, <strong>ტექნიკური SEO</strong>-ით და ელვისებური ჩატვირთვით.',
+    s2_title: "მაღალი წარმადობის Backend სისტემები", s2_desc: 'მყარი <strong>Node.js</strong> და <strong>Java</strong> backends. სპეციალიზაცია: <strong>API ინტეგრაცია</strong>, <strong>PostgreSQL</strong> და enterprise უსაფრთხოება.',
+    s3_title: "Custom SaaS და Dashboard დეველოპმენტი", s3_desc: 'სრული სტექის პლატფორმები როგორიცაა <strong>GEO Cloud</strong> — <strong>მომხმარებლის მართვა</strong>, <strong>რეალური დროის მონიტორინგი</strong>, <strong>Stripe ბილინგი</strong>.',
+    s4_title: "ტექნიკური SEO და UI ოპტიმიზაცია", s4_desc: 'ლამაზ დიზაინსა და <strong>Google-ready კოდს</strong> შორის ხიდი. ყველა პროექტი მოიცავს <strong>Core Web Vitals</strong> ოპტიმიზაციას და schema markup-ს.',
     s5_title: "Java და პლაგინ დეველოპმენტი", s5_desc: 'Custom <strong>Java</strong> აპლიკაციები და <strong>Spigot</strong> პლაგინები. მაღალი კონკურენტული სერვერული სისტემებიდან სპეციალიზებულ backend ინსტრუმენტებამდე.',
-    s6_title: "მხარდაჭერა და მომსახურება", s6_desc: 'უწყვეტი მხარდაჭერა პლაგინების, სერვერებისა და ვებ აპლიკაციებისთვის. <strong>წარმადობის მონიტორინგი</strong>, უსაფრთხოების განახლებები და ახალი ფუნქციები.',
-    transition_what: "რას ვაკეთებ", transition_work: "რჩეული ნამუშევრები", transition_journey: "ჩემი გზა", transition_questions: "კითხვები", transition_talk: "დაგვიკავშირდით",
+    s6_title: "მხარდაჭერა და მომსახურება", s6_desc: 'უწყვეტი მხარდაჭერა ვებ აპლიკაციებისა და სერვერებისთვის. <strong>წარმადობის მონიტორინგი</strong>, უსაფრთხოების განახლებები და ახალი ფუნქციები.',
+    cta_start: "პროექტის დაწყება →", cta_discuss: "განვიხილოთ თქვენი backend →", cta_see: "იხილეთ კვლევები →", cta_audit: "შეამოწმეთ თქვენი საიტი →", cta_view: "იხილეთ BuiltByBit-ზე →", cta_support: "მიიღეთ მხარდაჭერა →",
+    java_eyebrow: "საინჟინრო აზროვნება", java_title: "პლაგინ არქიტექტურიდან ვებ ინფრასტრუქტურამდე",
+    java_p1: '<strong>მაღალი კონკურენტული გარემოს</strong> მართვამ მასწავლა რასაც ვერასდროს ისწავლის უმეტესი ვებ დეველოპერი: <strong>ყოველი მილიწამი მნიშვნელოვანია</strong>.',
+    java_p2: 'ასობით მომხმარებლის ერთდროულად დამუშავებისას, გამოიმუშავებ ინსტინქტს <strong>მეხსიერების მართვის</strong>, <strong>ასინქრონული პროცესინგის</strong> და <strong>კოდის ეფექტურობის</strong> მიმართ.',
+    java_p3: 'ამიტომ ჩემი <strong>React</strong> და <strong>Next.js</strong> პროექტები უფრო სწრაფად იტვირთება, <strong>Node.js</strong> API-ები უფრო მეტ მოთხოვნას უმკლავდება, და <strong>PostgreSQL</strong> ქვერიები დღე ერთიდან ოპტიმიზირებულია.',
+    adv_latency: "დაბალი ლატენტობა", adv_latency_desc: "ოპტიმიზირებული 100ms-ზე ნაკლები რეაგირებისთვის",
+    adv_memory: "მეხსიერების ეფექტურობა", adv_memory_desc: "ნულოვანი მეხსიერების გაჟონვა, სუფთა garbage collection",
+    adv_concurrency: "მაღალი კონკურენტულობა", adv_concurrency_desc: "აგებული ათასობით ერთდროული მომხმარებლისთვის",
     projects_eyebrow: "პორტფოლიო", projects_title: "პროექტები", projects_desc: "რეალური პროექტები, რეალური შედეგები. ყველა აგებულია ნულიდან სუფთა კოდით და თანამედროვე ტექნოლოგიებით.",
-    experience_eyebrow: "გამოცდილება", experience_title: "ჩემი გზა", experience_desc: "თვითნასწავლი დეველოპერიდან full-stack აპლიკაციების შემქმნელამდე მსოფლიო მასშტაბის კლიენტებისთვის.",
-    faq_eyebrow: "FAQ", faq_title: "ხშირად დასმული კითხვები",
-    contact_subtitle: "მზად ხარ რაღაც დიდებულის შესაქმნელად?", contact_form_title: "ან შეავსეთ ფორმა ქვემოთ",
+    tag_saas: "Custom SaaS პლატფორმა", tag_webapp: "ვებ აპლიკაცია",
+    proj_geo_desc: 'Enterprise დონის <strong>ქლაუდ ჰოსტინგ პლატფორმა</strong> აგებული <strong>Next.js</strong>-ით და <strong>Node.js</strong>-ით. <strong>მომხმარებლის მართვა</strong>, <strong>Stripe ბილინგი</strong> და რეალური დროის <strong>სერვერის მონიტორინგი</strong>.',
+    proj_iq_desc: 'ინტერაქტიული <strong>კოგნიტური შეფასების პლატფორმა</strong> აგებული <strong>React</strong>-ით და <strong>TypeScript</strong>-ით. <strong>რეალური დროის სკორინგი</strong> და დეტალური <strong>ანალიტიკის დაშბორდი</strong>.',
+    cta_start_project: "დაიწყე პროექტი", cta_instagram: "Instagram-ზე დაწერე",
+    exp_eyebrow: "გამოცდილება", exp_title: "ჩემი გზა", exp_desc: "თვითნასწავლი დეველოპერიდან full-stack აპლიკაციების შემქმნელამდე მსოფლიო მასშტაბის კლიენტებისთვის.",
+    tl1_date: "2023 — დასაწყისი", tl1_title: "ვებ დეველოპმენტის შესწავლა", tl1_desc: "დავიწყე HTML, CSS და JavaScript სწავლა. ავაშენე პირველი ვებ-საიტები და სწრაფად გადავერთე თანამედროვე ფრეიმვორკებზე.",
+    tl2_date: "2024 — დონის ამაღლება", tl2_title: "Full-Stack & Backend ინჟინერია", tl2_desc: 'გადავერთე <strong>React</strong>-ზე, <strong>Next.js</strong>-ზე და <strong>TypeScript</strong>-ზე. დავიწყე full-stack აპლიკაციების აგება <strong>Node.js</strong>-ით და <strong>PostgreSQL</strong>-ით.',
+    tl3_date: "2024 — პირველი კლიენტები", tl3_title: "კლიენტების პროექტები", tl3_desc: "დავიწყე ბიზნესებთან მუშაობა. მივაწოდე custom ვებ-საიტები, ვებ აპლიკაციები და მაღალი წარმადობის backend სისტემები.",
+    tl4_date: "2025 — პროდუქტების შექმნა", tl4_title: "GEO Cloud & GioStudio IQ", tl4_desc: 'ავაშენე და გავუშვი საკუთარი SaaS პროდუქტები — <strong>GEO Cloud</strong> (ჰოსტინგ პლატფორმა) და <strong>GioStudio IQ</strong> (შეფასების ინსტრუმენტი).',
+    tl5_date: "2026 — აწმყო", tl5_title: "GioDev — Full-Stack ვებ დეველოპერი", tl5_desc: 'ახლა ვთავაზობ end-to-end ვებ დეველოპმენტს — <strong>React</strong> ფრონტენდიდან <strong>Node.js</strong> ბექენდამდე, custom SaaS პლატფორმები და enterprise პროგრამული უზრუნველყოფა.',
+    tag_freelance: "ფრილანსი", tag_webapps: "ვებ აპები", tag_backend: "ბექენდი", tag_fullstack: "Full-Stack", tech_title: "ტექნოლოგიები",
+    faq_title: "ხშირად დასმული კითხვები",
+    faq1_q: "რამდენი ღირს ვებ-საიტი ან ვებ აპლიკაცია?", faq1_a: "დამოკიდებულია მოცულობაზე. მარტივი ლენდინგი იწყება 119 GEL-დან. მრავალგვერდიანი საიტები 349 GEL-დან. Custom SaaS პლატფორმები ფასდება მოთხოვნების მიხედვით.",
+    faq2_q: "რამდენად სწრაფად შეგიძლიათ პროექტის მიწოდება?", faq2_a: "მარტივი ვებ-საიტები 48 საათში. მრავალგვერდიანი საიტები 1-2 კვირაში. Custom ვებ აპლიკაციები და SaaS პლატფორმები 2-6 კვირა.",
+    faq3_q: "რა ტექნოლოგიებს იყენებთ?", faq3_a: 'ძირითადი სტექი: <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Node.js</strong> და <strong>PostgreSQL</strong>. ასევე <strong>Prisma</strong>, <strong>Stripe</strong> და <strong>Vercel</strong>.',
+    faq4_q: "მუშაობთ თუ არა საქართველოს გარეთ კლიენტებთან?", faq4_a: "დიახ! ვმუშაობ კლიენტებთან მთელს მსოფლიოში. კომუნიკაცია Instagram-ით, ელ-ფოსტით ან ვიდეო ზარებით.",
+    faq5_q: "მაქვს თუ არა პირდაპირი წვდომა თქვენთან?", faq5_a: "რა თქმა უნდა. მუშაობთ პირდაპირ ჩემთან — შუამავლების გარეშე. ყველაფერს ვაკეთებ დიზაინიდან დეპლოიმენტამდე.",
+    faq6_q: "რა ხდება გაშვების შემდეგ?", faq6_a: "ყოველი პროექტი მოიცავს გაშვების შემდგომ მხარდაჭერას. ასევე ვთავაზობ რეტეინერ შეთანხმებებს უწყვეტი მომსახურებისთვის.",
+    faq7_q: "იქნება თუ არა ჩემი საიტი მობილურზე მორგებული და SEO-ოპტიმიზირებული?", faq7_a: "დიახ. ყველა პროექტი აგებულია <strong>რესპონსიული დიზაინით</strong> და მოიცავს <strong>ტექნიკურ SEO</strong> ოპტიმიზაციას — სემანტიკური HTML, schema markup და Core Web Vitals.",
+    contact_subtitle: "მზად ხარ რაღაც დიდებულის შესაქმნელად?", contact_btn_ig: "Instagram-ზე დაწერე", contact_btn_bbb: "BuiltByBit მაღაზია",
+    contact_form_title: "ან შეავსეთ ფორმა ქვემოთ",
+    form_name: "სახელი", form_name_ph: "თქვენი სახელი", form_email: "ელ-ფოსტა", form_email_ph: "თქვენი@email.com",
+    form_service: "სერვისი", form_select: "აირჩიეთ სერვისი",
+    form_opt_website: "ვებ-საიტი", form_opt_webapp: "ვებ აპლიკაცია", form_opt_saas: "SaaS პლატფორმა",
+    form_opt_backend: "Backend / API", form_opt_java: "Java დეველოპმენტი", form_opt_other: "სხვა",
+    form_message: "შეტყობინება", form_message_ph: "მოგვწერეთ თქვენი პროექტის შესახებ...", form_submit: "შეტყობინების გაგზავნა",
+    label_email: "ელ-ფოსტა", label_ig: "Instagram", label_location: "ლოკაცია",
     footer_tagline: "Full-Stack ვებ დეველოპმენტი — ქუთაისი, საქართველო", footer_copy: "© 2026 GioDev — ყველა უფლება დაცულია"
   },
   ru: {
+    nav_home: "Главная", nav_services: "Услуги", nav_projects: "Проекты", nav_experience: "Опыт", nav_faq: "FAQ", nav_contact: "Контакт",
     hero_eyebrow: "Full-Stack Веб-разработчик — Кутаиси, Грузия — Доступен по всему миру",
     hero_subtitle: 'Создаю <strong>масштабируемые веб-приложения</strong>, <strong>индивидуальные SaaS-платформы</strong> и <strong>высокопроизводительное ПО</strong> для клиентов по всему миру.',
-    hero_stat1_num: "50+", hero_stat1_label: "Проектов",
-    hero_stat2_num: "3г", hero_stat2_label: "Опыта",
-    hero_stat3_num: "48ч", hero_stat3_label: "Быстрый запуск",
-    hero_stat4_num: "100%", hero_stat4_label: "Прямой контакт",
-    nav_services: "Услуги", nav_projects: "Проекты", nav_experience: "Опыт", nav_faq: "FAQ", nav_contact: "Контакт",
+    hero_btn_projects: "Проекты", hero_btn_contact: "Связаться",
+    stat_projects: "Проектов", stat_experience: "Опыта", stat_fast: "Быстрый запуск", stat_direct: "Прямой контакт",
+    scroll: "Скролл",
+    mq_custom: "Custom Software", mq_api: "API Дизайн", mq_georgia: "Грузия",
+    trans_what: "Что я делаю", trans_java: "Инженерное преимущество", trans_work: "Избранные работы", trans_journey: "Мой путь", trans_questions: "Вопросы", trans_talk: "Свяжитесь со мной",
     services_eyebrow: "Основные услуги", services_title: "Разработка инженерного уровня",
     services_desc: 'От <strong>масштабируемых веб-приложений</strong> до <strong>высокопроизводительных Backend-систем</strong> — я соединяю дизайн и enterprise-код.',
-    s1_title: "Масштабируемые веб-приложения", s1_desc: 'Приложения на <strong>React</strong> и <strong>Next.js</strong>, оптимизированные для <strong>SSR</strong>, <strong>технического SEO</strong> и молниеносной загрузки. <strong>Адаптивный дизайн</strong> для всех устройств.',
+    s1_title: "Масштабируемые веб-приложения", s1_desc: 'Приложения на <strong>React</strong> и <strong>Next.js</strong>, оптимизированные для <strong>SSR</strong>, <strong>технического SEO</strong> и молниеносной загрузки.',
     s2_title: "Высокопроизводительные Backend-системы", s2_desc: 'Надёжные бэкенды на <strong>Node.js</strong> и <strong>Java</strong>. Специализация: <strong>API-интеграция</strong>, проектирование <strong>PostgreSQL</strong> и enterprise-безопасность.',
     s3_title: "Разработка SaaS и дашбордов", s3_desc: 'Full-stack платформы как <strong>GEO Cloud</strong> с <strong>управлением пользователями</strong>, <strong>мониторингом в реальном времени</strong>, <strong>Stripe-биллингом</strong> и визуализацией данных.',
     s4_title: "Техническое SEO и UI-оптимизация", s4_desc: 'Мост между красивым дизайном и <strong>Google-ready кодом</strong>. Каждый проект включает оптимизацию <strong>Core Web Vitals</strong>, семантический HTML и schema markup.',
     s5_title: "Java и разработка плагинов", s5_desc: 'Индивидуальные приложения на <strong>Java</strong> и плагины <strong>Spigot</strong>. От высоконагруженных серверных систем до специализированных backend-инструментов.',
-    s6_title: "Поддержка и обслуживание", s6_desc: 'Постоянная поддержка плагинов, серверов и веб-приложений. <strong>Мониторинг производительности</strong>, патчи безопасности и новые функции.',
-    transition_what: "Что я делаю", transition_work: "Избранные работы", transition_journey: "Мой путь", transition_questions: "Вопросы", transition_talk: "Свяжитесь со мной",
+    s6_title: "Поддержка и обслуживание", s6_desc: 'Постоянная поддержка веб-приложений и серверов. <strong>Мониторинг производительности</strong>, патчи безопасности и новые функции.',
+    cta_start: "Начать проект →", cta_discuss: "Обсудить ваш backend →", cta_see: "Смотреть кейсы →", cta_audit: "Аудит вашего сайта →", cta_view: "Смотреть на BuiltByBit →", cta_support: "Получить поддержку →",
+    java_eyebrow: "Инженерное мышление", java_title: "От архитектуры плагинов к веб-инфраструктуре",
+    java_p1: 'Управление <strong>высоконагруженными средами</strong> научило меня тому, что большинство веб-разработчиков никогда не поймут: <strong>каждая миллисекунда задержки имеет значение</strong>.',
+    java_p2: 'Обрабатывая сотни пользователей одновременно, вы развиваете инстинкт к <strong>управлению памятью</strong>, <strong>асинхронной обработке</strong> и <strong>эффективности кода</strong>.',
+    java_p3: 'Именно поэтому мои проекты на <strong>React</strong> и <strong>Next.js</strong> загружаются быстрее, мои <strong>Node.js</strong> API обрабатывают больше запросов, а <strong>PostgreSQL</strong> запросы оптимизированы с первого дня.',
+    adv_latency: "Низкая задержка", adv_latency_desc: "Оптимизировано для отклика менее 100мс",
+    adv_memory: "Эффективность памяти", adv_memory_desc: "Нулевые утечки памяти, чистая сборка мусора",
+    adv_concurrency: "Высокая конкурентность", adv_concurrency_desc: "Построено для тысяч одновременных пользователей",
     projects_eyebrow: "Портфолио", projects_title: "Проекты", projects_desc: "Реальные проекты, реальные результаты. Каждый создан с нуля на чистом коде и современных технологиях.",
-    experience_eyebrow: "Опыт", experience_title: "Мой путь", experience_desc: "От самоучки до разработчика full-stack приложений для клиентов по всему миру.",
-    faq_eyebrow: "FAQ", faq_title: "Часто задаваемые вопросы",
-    contact_subtitle: "Готовы создать что-то великое?", contact_form_title: "Или заполните форму ниже",
+    tag_saas: "Custom SaaS Платформа", tag_webapp: "Веб-приложение",
+    proj_geo_desc: 'Enterprise <strong>облачная хостинг-платформа</strong> на <strong>Next.js</strong> и <strong>Node.js</strong>. <strong>Управление пользователями</strong>, <strong>Stripe-биллинг</strong> и <strong>мониторинг серверов</strong> в реальном времени.',
+    proj_iq_desc: 'Интерактивная <strong>платформа когнитивной оценки</strong> на <strong>React</strong> и <strong>TypeScript</strong>. <strong>Алгоритмы скоринга</strong> в реальном времени и детальная <strong>аналитика</strong>.',
+    cta_start_project: "Начать проект", cta_instagram: "Написать в Instagram",
+    exp_eyebrow: "Опыт", exp_title: "Мой путь", exp_desc: "От самоучки до разработчика full-stack приложений для клиентов по всему миру.",
+    tl1_date: "2023 — Начало", tl1_title: "Начал веб-разработку", tl1_desc: "Начал изучать HTML, CSS и JavaScript. Создал первые сайты и быстро перешёл к сложным интерфейсам на современных фреймворках.",
+    tl2_date: "2024 — Повышение уровня", tl2_title: "Full-Stack и Backend инженерия", tl2_desc: 'Перешёл на <strong>React</strong>, <strong>Next.js</strong> и <strong>TypeScript</strong>. Начал создавать full-stack приложения с <strong>Node.js</strong> и <strong>PostgreSQL</strong>.',
+    tl3_date: "2024 — Первые клиенты", tl3_title: "Начал работать с клиентами", tl3_desc: "Начал работать с бизнесами. Создавал кастомные сайты, веб-приложения и высокопроизводительные backend-системы.",
+    tl4_date: "2025 — Создание продуктов", tl4_title: "Запуск GEO Cloud и GioStudio IQ", tl4_desc: 'Создал и запустил собственные SaaS-продукты — <strong>GEO Cloud</strong> (хостинг-платформа) и <strong>GioStudio IQ</strong> (инструмент оценки).',
+    tl5_date: "2026 — Настоящее время", tl5_title: "GioDev — Full-Stack Веб-разработчик", tl5_desc: 'Теперь предлагаю端到端 веб-разработку — от <strong>React</strong> фронтендов до <strong>Node.js</strong> бэкендов, кастомных SaaS-платформ и enterprise-решений.',
+    tag_freelance: "Фриланс", tag_webapps: "Веб-апы", tag_backend: "Бэкенд", tag_fullstack: "Full-Stack", tech_title: "Технологии",
+    faq_title: "Часто задаваемые вопросы",
+    faq1_q: "Сколько стоит сайт или веб-приложение?", faq1_a: "Зависит от объёма. Простой лендинг от 119 GEL. Многостраничные сайты от 349 GEL. Кастомные SaaS-платформы оцениваются индивидуально. Всегда даю чёткую оценку до начала — без скрытых платежей.",
+    faq2_q: "Как быстро вы можете выполнить проект?", faq2_a: "Простые сайты за 48 часов. Многостраничные — 1-2 недели. Кастомные веб-приложения и SaaS — 2-6 недель в зависимости от сложности.",
+    faq3_q: "Какие технологии вы используете?", faq3_a: 'Основной стек: <strong>React</strong>, <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Node.js</strong> и <strong>PostgreSQL</strong>. Также <strong>Prisma</strong>, <strong>Stripe</strong> и <strong>Vercel</strong>.',
+    faq4_q: "Работаете ли вы с клиентами за пределами Грузии?", faq4_a: "Да! Работаю с клиентами по всему миру. Общение через Instagram, email или видеозвонки. Часовые пояса — не проблема.",
+    faq5_q: "Получу ли я прямой доступ к вам во время проекта?", faq5_a: "Абсолютно. Вы работаете напрямую со мной — без посредников и менеджеров. Я занимаюсь всем от дизайна до деплоя.",
+    faq6_q: "Что насчёт поддержки после запуска?", faq6_a: "Каждый проект включает пост-запусковую поддержку. Также предлагаю ретейнер-соглашения для постоянного обслуживания и разработки новых функций.",
+    faq7_q: "Будет ли мой сайт мобильным и SEO-оптимизированным?", faq7_a: "Да. Каждый проект создаётся с <strong>адаптивным дизайном</strong> и включает <strong>техническую SEO</strong> оптимизацию — семантический HTML, schema markup и Core Web Vitals.",
+    contact_subtitle: "Готовы создать что-то великое?", contact_btn_ig: "Написать в Instagram", contact_btn_bbb: "Магазин BuiltByBit",
+    contact_form_title: "Или заполните форму ниже",
+    form_name: "Имя", form_name_ph: "Ваше имя", form_email: "Email", form_email_ph: "ваш@email.com",
+    form_service: "Услуга", form_select: "Выберите услугу",
+    form_opt_website: "Веб-сайт", form_opt_webapp: "Веб-приложение", form_opt_saas: "SaaS Платформа",
+    form_opt_backend: "Backend / API", form_opt_java: "Java Разработка", form_opt_other: "Другое",
+    form_message: "Сообщение", form_message_ph: "Расскажите о вашем проекте...", form_submit: "Отправить сообщение",
+    label_email: "Email", label_ig: "Instagram", label_location: "Локация",
     footer_tagline: "Full-Stack Веб-разработка — Кутаиси, Грузия", footer_copy: "© 2026 GioDev — Все права защищены"
   }
 };
@@ -118,38 +214,26 @@ function setLanguage(lang) {
   // Update all elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
-    if (t[key]) el.textContent = t[key];
+    if (t[key] !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        // skip, handled by placeholder
+      } else {
+        el.innerHTML = t[key];
+      }
+    }
   });
 
-  // Update specific elements by ID/class
-  const heroEyebrow = document.querySelector('.hero-eyebrow');
-  if (heroEyebrow) heroEyebrow.textContent = t.hero_eyebrow;
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
 
-  const heroSubtitle = document.querySelector('.hero-subtitle');
-  if (heroSubtitle) heroSubtitle.innerHTML = t.hero_subtitle;
-
-  // Update stat labels
-  const statLabels = document.querySelectorAll('.hero-stat-label');
-  if (statLabels[0]) statLabels[0].textContent = t.hero_stat1_label;
-  if (statLabels[1]) statLabels[1].textContent = t.hero_stat2_label;
-  if (statLabels[2]) statLabels[2].textContent = t.hero_stat3_label;
-  if (statLabels[3]) statLabels[3].textContent = t.hero_stat4_label;
-
-  // Update section headers
-  const sectionEyebrows = document.querySelectorAll('.section-eyebrow');
-  const sectionTitles = document.querySelectorAll('.section-title');
-  const sectionDescs = document.querySelectorAll('.section-desc');
-
-  // Services section
-  if (sectionEyebrows[0]) sectionEyebrows[0].textContent = t.services_eyebrow;
-  if (sectionTitles[0]) sectionTitles[0].textContent = t.services_title;
-  if (sectionDescs[0]) sectionDescs[0].innerHTML = t.services_desc;
-
-  // Footer
-  const footerTagline = document.querySelector('.footer-tagline');
-  if (footerTagline) footerTagline.textContent = t.footer_tagline;
-  const footerCopy = document.querySelector('.footer-copy');
-  if (footerCopy) footerCopy.textContent = t.footer_copy;
+  // Update select options
+  document.querySelectorAll('select option[data-i18n]').forEach((opt) => {
+    const key = opt.getAttribute('data-i18n');
+    if (t[key]) opt.textContent = t[key];
+  });
 
   // Update lang links active state
   document.querySelectorAll('.lang-link').forEach((link) => {
