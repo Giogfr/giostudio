@@ -13,6 +13,8 @@ const isMobile = isTouchDevice;
 document.documentElement.style.scrollBehavior = 'smooth';
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ limitCallbacks: true });
+gsap.ticker.fps(60);
 
 // Refresh ScrollTrigger after everything loads
 window.addEventListener('load', () => {
@@ -512,12 +514,188 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 })();
 
 // ========================================
-// MARQUEE — Duplicate for seamless loop
+// HERO SCENE — Epic Animated Shader Background
 // ========================================
-(function initMarquee() {
-  document.querySelectorAll('.marquee-track').forEach((track) => {
-    const content = track.innerHTML;
-    track.innerHTML = content + content;
+(function initHeroScene() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true, powerPreference: 'high-performance' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(isMobile ? 1 : 1);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x050505);
+
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position, 1.0); }`;
+
+  const fragmentShader = `
+    uniform float uTime;
+    uniform vec2 uResolution;
+    uniform vec2 uMouse;
+    varying vec2 vUv;
+
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+    float snoise(vec2 v) {
+      const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+      vec2 i  = floor(v + dot(v, C.yy));
+      vec2 x0 = v - i + dot(i, C.xx);
+      vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+      vec4 x12 = x0.xyxy + C.xxzz;
+      x12.xy -= i1;
+      i = mod289(i);
+      vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+      m = m*m; m = m*m;
+      vec3 x = 2.0 * fract(p * C.www) - 1.0;
+      vec3 h = abs(x) - 0.5;
+      vec3 ox = floor(x + 0.5);
+      vec3 a0 = x - ox;
+      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+      vec3 g;
+      g.x = a0.x * x0.x + h.x * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130.0 * dot(m, g);
+    }
+
+    float fbm(vec2 p) {
+      float value = 0.0; float amplitude = 0.5; float frequency = 1.0;
+      for (int i = 0; i < 6; i++) {
+        value += amplitude * snoise(p * frequency);
+        frequency *= 2.0; amplitude *= 0.5; p += vec2(1.7, 9.2);
+      }
+      return value;
+    }
+
+    void main() {
+      vec2 uv = vUv;
+      vec2 aspect = vec2(uResolution.x / uResolution.y, 1.0);
+      vec2 p = (uv - 0.5) * aspect;
+      float t = uTime * 0.08;
+
+      vec2 q = vec2(0.0);
+      q.x = fbm(p + vec2(0.0, 0.0) + t * 0.5);
+      q.y = fbm(p + vec2(5.2, 1.3) + t * 0.3);
+
+      vec2 r = vec2(0.0);
+      r.x = fbm(p + 4.0 * q + vec2(1.7, 9.2) + t * 0.2);
+      r.y = fbm(p + 4.0 * q + vec2(8.3, 2.8) + t * 0.4);
+
+      float f = fbm(p + 3.5 * r);
+      vec2 mouseOffset = uMouse * 0.15;
+      f += snoise(p * 2.0 + mouseOffset + t) * 0.1;
+
+      vec3 color = mix(vec3(0.02, 0.02, 0.02), vec3(0.08, 0.08, 0.08), clamp(f * f * 3.0, 0.0, 1.0));
+      float ridge = 1.0 - abs(f);
+      ridge = pow(ridge, 4.0);
+      color += vec3(0.7, 0.7, 0.75) * ridge * 0.5;
+
+      float vignette = 1.0 - length(uv - 0.5) * 0.8;
+      color *= vignette;
+
+      float centerGlow = exp(-length(p) * 1.5) * (0.5 + 0.3 * sin(uTime * 0.3));
+      color += vec3(0.5, 0.5, 0.55) * centerGlow * 0.15;
+
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+
+  const material = new THREE.ShaderMaterial({
+    vertexShader, fragmentShader,
+    uniforms: {
+      uTime: { value: 0 },
+      uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      uMouse: { value: new THREE.Vector2(0, 0) },
+    },
+  });
+
+  const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+  scene.add(plane);
+
+  const particleCount = isMobile ? 150 : 300;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(particleCount * 3);
+  const pSizes = new Float32Array(particleCount);
+
+  for (let i = 0; i < particleCount; i++) {
+    pPos[i * 3] = (Math.random() - 0.5) * 4;
+    pPos[i * 3 + 1] = (Math.random() - 0.5) * 4;
+    pPos[i * 3 + 2] = Math.random() * 2;
+    pSizes[i] = Math.random() * 2 + 0.5;
+  }
+
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  pGeo.setAttribute('size', new THREE.BufferAttribute(pSizes, 1));
+
+  const pCam = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  pCam.position.z = 3;
+
+  const pVS = `
+    attribute float size;
+    uniform float uTime;
+    varying float vAlpha;
+    void main() {
+      vec3 pos = position;
+      pos.y += sin(uTime * 0.3 + position.x * 3.0) * 0.1;
+      pos.x += cos(uTime * 0.2 + position.y * 2.0) * 0.05;
+      vec4 mvPos = modelViewMatrix * vec4(pos, 1.0);
+      gl_PointSize = size * (100.0 / -mvPos.z);
+      gl_Position = projectionMatrix * mvPos;
+      vAlpha = smoothstep(5.0, 1.0, -mvPos.z);
+    }
+  `;
+
+  const pFS = `
+    varying float vAlpha;
+    void main() {
+      float d = length(gl_PointCoord - 0.5);
+      if (d > 0.5) discard;
+      float a = smoothstep(0.5, 0.0, d) * vAlpha * 0.3;
+      gl_FragColor = vec4(0.8, 0.8, 0.85, a);
+    }
+  `;
+
+  const pMat = new THREE.ShaderMaterial({
+    vertexShader: pVS, fragmentShader: pFS,
+    uniforms: { uTime: { value: 0 } },
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  });
+
+  const pts = new THREE.Points(pGeo, pMat);
+  scene.add(pts);
+
+  // Three.js Viewport Optimization: Only render when canvas is visible
+  let heroVisible = true;
+  const heroObserver = new IntersectionObserver((entries) => {
+    heroVisible = entries[0].isIntersecting;
+  }, { threshold: 0.05 });
+  heroObserver.observe(canvas);
+
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!heroVisible) return; // Skip rendering when off-screen (saves massive CPU)
+    const elapsed = clock.getElapsedTime();
+    material.uniforms.uTime.value = elapsed;
+    material.uniforms.uMouse.value.set(mouse.tx, mouse.ty);
+    pMat.uniforms.uTime.value = elapsed;
+    renderer.render(scene, pCam);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    renderer.setSize(w, h);
+    material.uniforms.uResolution.value.set(w, h);
+    pCam.aspect = w / h;
+    pCam.updateProjectionMatrix();
   });
 })();
 
@@ -599,8 +777,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   scene.add(points);
 
   const clock = new THREE.Clock();
+  let servicesVisible = true;
+  const servicesObserver = new IntersectionObserver((entries) => {
+    servicesVisible = entries[0].isIntersecting;
+  }, { threshold: 0.05 });
+  servicesObserver.observe(canvas);
+
   function animate() {
     requestAnimationFrame(animate);
+    if (!servicesVisible) return;
     points.rotation.y = clock.getElapsedTime() * 0.012;
     renderer.render(scene, camera);
   }
@@ -690,8 +875,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   scene.add(stars);
 
   const clock = new THREE.Clock();
+  let contactVisible = true;
+  const contactObserver = new IntersectionObserver((entries) => {
+    contactVisible = entries[0].isIntersecting;
+  }, { threshold: 0.05 });
+  contactObserver.observe(canvas);
+
   function animate() {
     requestAnimationFrame(animate);
+    if (!contactVisible) return;
     material.uniforms.uTime.value = clock.getElapsedTime();
     stars.rotation.y = clock.getElapsedTime() * 0.01;
     renderer.render(scene, camera);
@@ -1031,6 +1223,10 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 })();
 
 // ========================================
-// RESIZE
+// RESIZE (Debounced to prevent forced reflows)
 // ========================================
-window.addEventListener('resize', () => { ScrollTrigger.refresh(); });
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { ScrollTrigger.refresh(); }, 250);
+});

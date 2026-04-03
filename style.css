@@ -128,12 +128,22 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ========================================
-   iOS & Tablet Optimizations (Beautiful but Lightweight)
+   Performance Optimizations
    ======================================== */
 
-/* Fix iOS 100vh address bar bug */
-@supports (-webkit-touch-callout: none) {
-  .hero { min-height: -webkit-fill-available; }
+/* Promote animated elements to GPU layers to prevent layout thrashing */
+.service-card, .project-card, .timeline-item, .timeline-content, .advantage-stat, 
+.faq-item, .testimonial-card, .blog-card, .pricing-card, .tech-tag {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Fix heading hierarchy for Accessibility */
+.advantage-stat h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
 }
 
 /* Optimize for touch devices without losing beauty */
