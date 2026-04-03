@@ -478,11 +478,10 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 // CONTACT — Particle Morph Text
 // ========================================
 (function initContactMorph() {
-  if (isMobile) return;
   const canvas = document.getElementById('contact-morph-canvas');
   if (!canvas) return;
 
-  const dpr = Math.min(window.devicePixelRatio, 2);
+  const dpr = Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2);
   const rect = canvas.getBoundingClientRect();
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
