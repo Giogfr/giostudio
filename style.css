@@ -12,8 +12,8 @@
   --color-accent-dim: rgba(224, 224, 224, 0.12);
   --color-accent-glow: rgba(224, 224, 224, 0.25);
   --color-text: #f0f0f0;
-  --color-text-muted: #777777;
-  --color-text-dim: #444444;
+  --color-text-muted: #a3a3a3; /* Increased contrast for WCAG AA compliance */
+  --color-text-dim: #808080;   /* Increased contrast for better legibility */
   --color-border: rgba(255, 255, 255, 0.06);
   --color-border-hover: rgba(255, 255, 255, 0.12);
   --font-display: 'Playfair Display', Georgia, serif;
